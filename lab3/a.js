@@ -21,7 +21,7 @@ function initRotSquare()
 	}
 
 	gl.viewport( 0, 0, canvas.width, canvas.height );
-	gl.clearColor( 0.6, 1.0, 1.0, 0.4 );
+	gl.clearColor( 0.2, 1.0, 0.8, 1.0 );
 
 	var program = initShaders( gl, "rot-v-shader", "rot-f-shader" );
 	gl.useProgram( program );
