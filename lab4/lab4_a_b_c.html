@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+    <title>Lab4:2_1:a,b,c</title>
+    <script id="rtvshader" type="x-shader/x-vertex">
+	attribute vec4 vPosition;
+	attribute vec4 vColor;
+	varying vec4 fColor;
+	uniform vec3 theta;
+	uniform vec3 yidong;
+	uniform vec3 suofang;
+	void main()
+	{
+		//compute the sins and cos of theta for each of the three axis in one computation
+		vec3 angles = radians( theta );
+		vec3 cost = cos( theta );
+		vec3 sint = sin( theta );
+
+		mat4 rx = mat4(  1.0,  0.0,  0.0, 0.0,
+						 0.0,  cost.x,  sint.x, 0.0,
+						 0.0,  -sint.x,  cost.x, 0.0,
+						 0.0,  0.0,  0.0, 1.0
+						 );
+
+		mat4 ry = mat4(  cost.y,  0.0, -sint.y,  0.0,
+						 0.0,  1.0,  0.0,  0.0,
+						 sint.y,  0.0,  cost.y,  0.0,
+						 0.0,  0.0,  0.0,  1.0
+						 );
+
+		mat4 rz = mat4(  cost.z,  sint.z,  0.0,  0.0,
+						 -sint.z,  cost.z,  0.0,  0.0,
+						 0.0,  0.0,  1.0,  0.0,
+						 0.0,  0.0,  0.0,  1.0
+						 );
+		mat4 move = mat4(1.0, 0.0, 0.0, 0.0,
+					   0.0, 1.0, 0.0, 0.0,
+					   0.0, 0.0, 1.0, 0.0,
+					   yidong[0], yidong[1], yidong[2], 1.0);
+		mat4 zoom=mat4(
+						suofang[0],   0.0,  0.0,  0.0,
+						0.0,  suofang[1],   0.0,  0.0,
+						0.0,  0.0,  suofang[2],   0.0,
+						0.0,  0.0,  0.0,  1.0
+		);
+		fColor = vColor;
+		
+		gl_Position = rz * ry * rx * vPosition;
+		gl_Position=move*gl_Position;
+		gl_Position=zoom*gl_Position;
+		gl_Position.z = -gl_Position.z;
+	}
+	</script>
+
+    <script id="rtfshader" type="x-shader/x-fragment">
+	precision mediump float;
+	varying vec4 fColor;
+	void main()
+	{
+		gl_FragColor = fColor;
+	}
+	</script>
+    <script type="text/javascript" src="common/webgl-utils.js"></script>
+    <script type="text/javascript" src="common/initShaders.js"></script>
+    <script type="text/javascript" src="common/gl-matrix-min.js"></script>
+    
+    <script type="text/javascript" src="js/rotcube1.js"></script>
+</head>
+
+<body>
+    <h1>旋转的立方体</h1>
+    <canvas id="rtcb-canvas" width="580" height="580" style="float: left;">
+        你的浏览器不支持HTML5 canvas元素
+    </canvas>
+	<h3>任务a : 通过三个按键选择旋转方向，绘制旋转的立方体</h3>
+	旋转按钮
+    <br><button id="xbutton">Rotate X</button>
+    <button id="ybutton">Rotate Y</button>
+    <button id="zbutton">Rotate Z</button>
+	<br>平移按钮<br>
+	<button id="xon">x上</button>
+	<button id="xdown">x下</button>
+	<br>
+	<button id="yon">y上</button>
+	<button id="ydown">y下</button>
+	<br>
+	<button id="zon">z上</button>
+	<button id="zdown">z下</button>
+	<br>放缩按钮<br>
+	<button id="xbig">x轴放大</button>
+	<button id="xsmall">x轴缩小</button>
+	<br><button id="ybig">y轴放大</button>
+	<button id="ysmall">y轴缩小</button>
+	<br><button id="zbig">z轴放大</button>
+	<button id="zsmall">z轴缩小</button>
+	
+</body>
+
+</html>
