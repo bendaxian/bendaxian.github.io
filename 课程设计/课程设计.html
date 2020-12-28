@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Multi joint model (Buffered per segment)</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    <p>&larr;和&rarr;: 小腿左右旋转</p>
+	<br>
+	<p>&uarr;和&darr;: 脚板上下摆动</p>
+	<br>
+	<p>x和z键: 脚板左右转</p>
+	<br>
+	<p>c和v键: 脚趾上下弯动</p>
+
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/cuon-matrix.js"></script>
+    <script src="MultiJointModel_segment.js"></script>
+  </body>
+</html>
