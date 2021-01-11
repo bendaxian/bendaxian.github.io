@@ -2,25 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Multi joint model (Buffered per segment)</title>
+    <title>手臂+手掌+手指</title>
   </head>
-
   <body onload="main()">
     <canvas id="webgl" width="400" height="400">
     Please use a browser that supports "canvas"
     </canvas>
-    <p>&larr;和&rarr;: 小腿左右旋转</p>
+    <p>&larr;和&rarr;: 前臂左右旋转</p>
 	<br>
-	<p>&uarr;和&darr;: 脚板上下摆动</p>
+	<p>&uarr;和&darr;: 前臂上下摆动</p>
 	<br>
-	<p>x和z键: 脚板左右转</p>
+	<p>x和z键: 手掌左右转</p>
 	<br>
-	<p>c和v键: 脚趾上下弯动</p>
-
-    <script src="lib/webgl-utils.js"></script>
-    <script src="lib/webgl-debug.js"></script>
-    <script src="lib/cuon-utils.js"></script>
-    <script src="lib/cuon-matrix.js"></script>
-    <script src="MultiJointModel_segment.js"></script>
+	<p>c和v键: 五指上下弯动</p>
+    <script src="common/webgl-utils.js"></script>
+    <script src="common/webgl-debug.js"></script>
+    <script src="common/cuon-utils.js"></script>
+    <script src="common/cuon-matrix.js"></script>
+    <script src="foot_leg.js"></script>
   </body>
 </html>
